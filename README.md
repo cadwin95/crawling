@@ -11,6 +11,7 @@ https://www.cbe.go.kr/news/na/ntt/selectNttList.do?mi=10308&bbsId=1165
 `domain_image_crawler` provides a generic crawler that downloads images from any domain and can save them to a ZIP file.
 
 `gallery_crawler` goes a step further by exploring links up to a configurable depth (default 3) and tries to locate pages that look like image galleries.
+It now includes a helper script to crawl every domain listed in `docs/test_sites.md`.
 
 Check each folder's README for setup and usage details.
 

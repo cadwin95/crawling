@@ -2,13 +2,25 @@ import argparse
 import os
 import re
 from collections import deque
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, urlunparse, parse_qsl, urlencode
 
 import requests
 from bs4 import BeautifulSoup
 
 
 DEFAULT_DEPTH = 3
+
+
+def normalize_url(url: str) -> str:
+    """Return a normalized URL for consistent comparison."""
+    parsed = urlparse(url)
+    scheme = parsed.scheme.lower()
+    netloc = parsed.netloc.lower()
+    path = parsed.path or "/"
+    if path != "/" and path.endswith("/"):
+        path = path[:-1]
+    query = urlencode(sorted(parse_qsl(parsed.query)))
+    return urlunparse((scheme, netloc, path, "", query, ""))
 
 
 def fetch_html(url: str) -> str:
@@ -25,7 +37,7 @@ def extract_links(page_url: str, html: str, domain: str):
     for a in soup.find_all("a", href=True):
         href = urljoin(page_url, a["href"])
         if urlparse(href).netloc == domain:
-            links.append(href)
+            links.append(normalize_url(href))
     return links
 
 
@@ -63,6 +75,7 @@ def download_file(url: str, dest_folder: str):
 
 def crawl_domain(start_url: str, output_dir: str = "images", max_depth: int = DEFAULT_DEPTH, max_pages: int = 50):
     """Crawl a domain for gallery pages and download their images."""
+    start_url = normalize_url(start_url)
     domain = urlparse(start_url).netloc
     visited = set()
     queue = deque([(start_url, 0)])
