@@ -22,3 +22,13 @@ python crawler.py https://example.com -o output_folder --max-depth 3
 ```
 
 Use `--max-pages` to limit the number of total pages visited if needed.
+
+### Crawling Multiple Test Sites
+
+To crawl every domain listed in `docs/test_sites.md`, run:
+
+```
+python multi_crawler.py
+```
+
+Each site's images will be stored in a subdirectory under `sites/` by default.
