@@ -13,3 +13,5 @@ https://www.cbe.go.kr/news/na/ntt/selectNttList.do?mi=10308&bbsId=1165
 `gallery_crawler` goes a step further by exploring links up to a configurable depth (default 3) and tries to locate pages that look like image galleries.
 
 Check each folder's README for setup and usage details.
+
+For a list of recommended websites to test various crawling scenarios, see [docs/test_sites.md](docs/test_sites.md).
