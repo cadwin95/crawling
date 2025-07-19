@@ -16,3 +16,5 @@ It now includes a helper script to crawl every domain listed in `docs/test_sites
 Check each folder's README for setup and usage details.
 
 For a list of recommended websites to test various crawling scenarios, see [docs/test_sites.md](docs/test_sites.md).
+
+`asiad_cc_reservation` demonstrates automating a login and tee time booking on the Asiad CC website. The script uses placeholder URLs that you must adjust to match the real service.
